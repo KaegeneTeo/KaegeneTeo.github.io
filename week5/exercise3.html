@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript (Part 2) - Exercise 3</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <style>
+        #country-box {
+            width: 70%;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <!-- DO NOT MODIFY HTML -->
+    <div class="container">
+
+        <div id="country-box">
+            <table id="country-table" class="table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Capital</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>South Korea</td>
+                        <td>Seoul</td>
+                    </tr>
+                    <tr>
+                        <td>North Korea</td>
+                        <td>Pyongyang</td>
+                    </tr>
+                    <tr>
+                        <td>Japan</td>
+                        <td>Tokyo</td>
+                    </tr>
+                    <tr>
+                        <td>France</td>
+                        <td>Paris</td>
+                    </tr>
+                    <tr>
+                        <td>Italy</td>
+                        <td>Rome</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="celebrity-box">
+            <table id="celebrity-table" class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Lee Min Ho</td>
+                        <td>South Korea</td>
+                    </tr>
+                    <tr>
+                        <td>Bae Suzy</td>
+                        <td>South Korea</td>
+                    </tr>
+                    <tr>
+                        <td>Hyun Song Wol</td>
+                        <td>North Korea</td>
+                    </tr>
+                    <tr>
+                        <td>Nagase Tomoya</td>
+                        <td>Japan</td>
+                    </tr>
+                    <tr>
+                        <td>Hamasaki Ayumi</td>
+                        <td>Japan</td>
+                    </tr>
+                    <tr>
+                        <td>Vincent Cassel</td>
+                        <td>France</td>
+                    </tr>
+                    <tr>
+                        <td>Eros Ramazzotti</td>
+                        <td>Italy</td>
+                    </tr>
+                    <tr>
+                        <td>Laura Pausini</td>
+                        <td>Italy</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn btn-primary" onclick="add_celebrity_column()">
+                Add Capital Column
+            </button>
+        </div>
+    </div>
+    <!-- DO NOT MODIFY HTML -->
+
+
+  
+
+
+    <script>
+
+        //=====================================================
+        // Pair Programming - Activity 3
+        //    exercise3.html
+        //=====================================================
+
+        function add_celebrity_column() {
+            
+            // YOUR CODE GOES HERE
+            //store country and celebrity tables into variables
+            var country_table = document.getElementById("country-table")
+            var celebrity_table = document.getElementById("celebrity-table")
+            
+            //store all rows of coutnry table in variable
+            // cells in rows are split by /t
+            var body_country_table = country_table.children[1]
+            var row_country_table = body_country_table.children
+            
+            ////store all rows of celebrity table in variable
+            // cells in rows are split by /t
+            var body_celebrity_table = celebrity_table.children[1]
+            var header_celebrity_table = celebrity_table.children[0]
+            var row_celebrity_table = body_celebrity_table.children
+
+            for(i=0;i<row_country_table.length;i++){
+                var cell_value_array_top = row_country_table[i].innerText.split('\t')
+                var country_top = cell_value_array_top[0]
+                var capital_top = cell_value_array_top[1] 
+                for(j=0;j<row_celebrity_table.length;j++){
+
+                    var html_row_btm = row_celebrity_table[j].innerHTML
+                    var cell_value_array_btm = row_celebrity_table[j].innerText.split('\t')
+                    var country_bottom = cell_value_array_btm[1]
+
+                    
+                        
+                    
+
+                    if(country_top==country_bottom){
+                        row_celebrity_table[j].innerHTML = row_celebrity_table[j].innerHTML + "<td>" +capital_top+ "</td>"
+                        // console.log(capital_top)
+                        // console.log(html_row_btm)
+                    }
+                }
+                // console.log(country)
+                // console.log(celebrity)
+            }
+            header_celebrity_table.innerHTML = "<tr><th>Name</th><th>Country</th><th>Capital</th></tr>"
+            
+            
+            
+        }
+
+
+
+    </script>
+
+
+
+
+
+
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+</body>
+</html>
