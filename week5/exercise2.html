@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript (Part 2) - Exercise 2</title>
+    <style>
+        #outer-box {
+            border: 2px solid blue;
+            padding: 20px;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="outer-box">
+        
+        <ol id="fruits">
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Durian</li>
+            <li>Mango</li>
+            <li>Watermelon</li>
+        </ol>
+        
+    </div>
+
+
+    <br><br>
+    <button onclick="add_fruit_prompt()">
+        Add a Fruit (prompt)
+    </button>
+
+    <br><br>
+
+    <button onclick="remove_fruit_top()">
+        Remove the top fruit
+    </button>
+
+    <br><br>
+
+    <button onclick="remove_fruit_bottom()">
+        Remove the bottom fruit
+    </button>
+
+    <br><br>
+
+    <button onclick="remove_fruit_prompt_name()">
+        Remove a Fruit (prompt for fruit name)
+    </button>
+
+    <br><br>
+
+    <button onclick="remove_fruit_prompt_number()">
+        Remove a Fruit (prompt for fruit number)
+    </button>
+
+
+    <script>
+
+        //=====================================================
+        // Pair Programming - Activity 2
+        //    exercise2.html
+        //=====================================================
+
+        // DO NOT MODIFY THIS FUNCTION
+        // PLEASE TEST THIS AND SEE WHAT IT DOES
+        function add_fruit_prompt() {
+            console.log("====== add a fruit to fruits list ======")
+            let new_fruit = prompt("Which fruit would you like to add?")
+
+            // If the user keyed in something
+            if( new_fruit ) {
+                let li = document.createElement("li")
+                let node = document.createTextNode(new_fruit)
+                li.appendChild(node)
+                
+                // Add the new <li> to fruits <ol>
+                document.getElementById("fruits").appendChild(li)
+            }
+            // If the user cancelled out or keyed in nothing (empty)
+            else {
+                alert("Aiyo... you need to key in something that's not empty")
+            }
+        }
+
+        // DO NOT MODIFY THIS FUNCTION
+        // PLEASE TEST THIS AND SEE WHAT IT DOES
+        function remove_fruit_top() {
+            console.log("====== remove the top fruit ======")
+            let fruit_list = document.getElementById("fruits")
+
+            if( fruit_list.children.length > 0 ) {
+                fruit_list.children[0].remove()
+            }
+        }
+
+        // DO NOT MODIFY THIS FUNCTION
+        // PLEASE TEST THIS AND SEE WHAT IT DOES
+        function remove_fruit_bottom() {
+            console.log("====== remove the bottom fruit ======")
+            let fruit_list = document.getElementById("fruits")
+
+            if( fruit_list.children.length > 0 ) {
+                fruit_list.removeChild(fruit_list.lastElementChild)
+            }
+        }
+
+
+        function remove_fruit_prompt_name() {
+            console.log("====== remove a fruit from fruits list (by name) ======")
+            let remove_fruit_name = prompt("What is the NAME of the fruit you wish to remove? (NOT case sensitive)")
+            
+            // If the user keyed in something
+            if( remove_fruit_name ) {
+                let flist = document.getElementById("fruits")
+                let flist_children = flist.children
+                let lowerCaseInput = remove_fruit_name.toLowerCase();
+                for(i=0; i<flist_children.length;i++){
+                    let fruit = flist_children[i]
+                    let fruitName = fruit.textContent.toLowerCase();
+                    if (fruitName === lowerCaseInput) {
+                        flist.removeChild(fruit);
+                        break; // Exit the loop after removing the first matching element
+            }
+                }
+                
+                
+            }
+            else {
+                alert("Aiyo... you need to key in something that's not empty")
+            }
+            
+            
+        }
+
+        function remove_fruit_prompt_number() {
+            console.log("====== remove a fruit from fruits list (by number) ======")
+            let remove_fruit_number = prompt("What is the fruit NUMBER you wish to remove? (Enter a valid number)")
+
+            // If the user keyed in something
+            if( remove_fruit_number ) {
+
+                // YOUR CODE GOES HERE
+                let flist = document.getElementById("fruits")
+                let flist_children = flist.children
+                flist.removeChild(flist_children[remove_fruit_number-1])
+            }
+            // If the user cancelled out or keyed in nothing (empty)
+            else {
+                alert("Aiyo... you need to key in something that's not empty")
+            }
+        }
+
+
+
+    </script>
+    
+</body>
+</html>
