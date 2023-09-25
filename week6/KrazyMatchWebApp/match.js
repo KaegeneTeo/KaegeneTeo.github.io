@@ -34,7 +34,7 @@ function call_krazymatch_api(gender) {
     console.log("Parameter gender: " + gender)  // Expecting 'm' or 'f'
 
     // 1) Complete the endpoint URL with gender appended as a parameter
-    let api_endpoint_url = "http://localhost/krazymatch/api/profile/random.php?g="+gender
+    let api_endpoint_url = "/krazymatch/api/profile/random.php?g="+gender
 
     // 2) Use Axios to call API asynchronously
     axios.get(api_endpoint_url)
